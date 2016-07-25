@@ -35,9 +35,24 @@ body {
 #nav-list a:hover {
 	background: #edc4c4; 
 }
-#nav-list span {
-	font-size: 1.5em;
+.navbar-header button.navbar-toggle, .navbar-header .icon-bar {
+	border: 1px solid #F8F8FF;
 }
+.navbar-header button.navbar-toggle {
+	margin-top: 30px;
+}
+#collapsable-nav a {
+	font-size: 1.2em;
+	text-align: center;
+}
+#collapsable-nav a span {
+	font-size: 1.2em;
+	margin-right: 5px;
+}
+
+
+
+
 
 
 
