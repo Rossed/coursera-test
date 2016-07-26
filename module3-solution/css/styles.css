@@ -5,6 +5,12 @@ body {
 	font-family: 'Oxygen', sans-serif;
 }
 
+h2 {
+	text-shadow: 1px 1px 1px #222;
+	padding-top: 20px;
+	padding-bottom: 40px;
+}
+
 /** HEADER **/
 
 #header-nav {
@@ -33,7 +39,11 @@ body {
 	color: #F8F8FF;
 }
 #nav-list a:hover {
-	background: #edc4c4; 
+	color: #CD5360; 
+	background: #F8F8FF;
+	margin-left: 10px;
+	margin-right: 10px;
+	border-radius: 4px;
 }
 .navbar-header button.navbar-toggle, .navbar-header .icon-bar {
 	border: 1px solid #F8F8FF;
@@ -43,13 +53,34 @@ body {
 }
 #collapsable-nav a {
 	font-size: 1.2em;
-	text-align: center;
 }
 #collapsable-nav a span {
 	font-size: 1.2em;
 	margin-right: 5px;
 }
 
+/** MAIN CONTENT **/
+#main-content {
+	width: 90%;
+}
+#menu-items div div {
+	background: #438496;
+	padding: 10px;
+	margin-bottom:30px;
+	border-radius: 10px;
+
+}
+#menu-items div div h3 {
+	font-weight: bold;
+}
+#menu-items #backToTop {
+	text-align: right;
+	margin: 0px;
+}
+#backToTop a {
+	color: #F8F8FF;
+	font-style: italic;
+}
 
 
 
