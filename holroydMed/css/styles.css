@@ -21,7 +21,7 @@ body {
 .navbar-brand {
   padding-top: 25px;
 }
-.navbar-brand h1 { /* Restaurant name */
+.navbar-brand h1 { 
   font-family: 'Lobster', cursive;
   color: #fff;
   font-size: 2em;
@@ -96,6 +96,10 @@ body {
   /* End Footer */
 
   /* Home Page */
+#changable-content p {
+  margin-bottom: 0;
+}
+
 #side-bar {
   	background-color: #fff;
   	border: 1px solid #015249;
@@ -103,6 +107,7 @@ body {
   	padding: 10px;
   	text-align: center;
 }
+
 #side-bar a {
   	text-decoration: none;
   	color: #015249;
@@ -123,5 +128,71 @@ body {
 	color: #fff;
 }
 /* End Home Page */
+
+/* History Page */
+
+#history-description div {
+  margin-bottom: 15px;
+}
+
+.picture {
+  text-align: center;
+  color: #fff;
+  height: 170px;
+  width: 140px;
+  border-radius: 5px;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 5px 5px 5px #222;
+}
+
+#drCGC {
+  background: url('../images/History/DrCharlesGoffreyChampion.png') no-repeat center;
+}
+#drAKS {
+  background: url('../images/History/DrArthurKitchener-Smith.png') no-repeat center;
+}
+#drAC {
+  background: url('../images/History/DrAllanChancellor.png') no-repeat center;
+}
+#drKP {
+  background: url('../images/History/DrKenPaver.png') no-repeat center;
+}
+#drCB {
+  background: url('../images/History/DrCedricBarrett.png') no-repeat center;
+}
+#drIH {
+  background: url('../images/History/DrIanHamilton.png') no-repeat center;
+}
+#drRM {
+  background: url('../images/History/DrRayMoldovan.png') no-repeat center;
+}
+
+.hoverScreen {
+  height: 170px;
+  width: 140px;
+  background-color: #000000;
+  opacity: 0;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 5px;
+}
+
+.hoverScreen:hover {
+  opacity: 0.5;
+  box-shadow: 10px 10px 10px #222;
+}
+.hoverScreen span {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%)
+}
+
+
+
+ /* End History Page */
 
 

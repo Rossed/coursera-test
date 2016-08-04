@@ -4,6 +4,7 @@
 	var hlryd = {};
 
 	var homeHtmlUrl = "snippets/home-snippet.html";
+	var histroyHTMLUrl = "snippets/history-snippet.html"
 
 	// Convenience function for inserting innerHTML for 'select'
 	var insertHtml = function (selector, html) {
@@ -19,9 +20,11 @@
 	};
 
 	// Changes active menu option on side-bar
-	hlryd.selected = function (clicked) {
+	hlryd.selected = function (keyWord) {
+		firstLoad = true;
+		hlryd.loadPage(keyWord);
 		document.getElementsByClassName('selected')[0].className = "";
-		document.getElementById(clicked).className += " selected";
+		document.getElementById(keyWord).className += " selected";
 	};
 
 	// On page load (before images or CSS)
@@ -38,41 +41,70 @@
     		}, false);
 	});
 
-	var menu = $('#side-bar');
-	var menuY = menu.offset().top;
-	var $w = $(window);	
-	$w.scroll(function() {
-        var scrollTop = $w.scrollTop();
-        var footerTop = document.querySelector("#footer").getBoundingClientRect().top;
-        var sideBarBottom = document
-        	.querySelector("#side-bar").getBoundingClientRect().bottom;
-        	console.log("bottom: "+sideBarBottom);
-        	console.log("top: " +footerTop);
-        	console.log("-----")
-    	if (footerTop - 50 > sideBarBottom) {
-	        menu.css({
-	        	top: scrollTop
-	        });
+	hlryd.loadPage = function (keyWord) {
+		var url;
+		if (keyWord === 'Home') {
+			url = homeHtmlUrl;
+		} else if (keyWord === 'History') {
+			url = histroyHTMLUrl;
+		}
+		showLoading("#changable-content");
+		$ajaxUtils.sendGetRequest(
+    		url,
+    		function (html) {
+    			insertHtml("#changable-content", html);
+    		}, false);
+
+	}
+
+	// Declared variables for scrolling side-bar
+	var $sidebar = $("#side-bar"),
+    	$window    = $(window),
+    	offset     = $sidebar.offset(),
+    	topPadding = 60,
+    	sidebarPadding = parseInt($("#side-bar").css('padding-top')) +
+    		parseInt($("#side-bar").css('padding-bottom')) + 2,
+    	firstLoad = true;
+	var documentHeight,
+    		$footer,
+    		footerOffset,
+    		footerMargin;
+
+    	
+    //Function that ensure side-bar follow when scrolling
+    $window.scroll(function() {
+
+    	if (firstLoad) {
+	    	documentHeight = ($(document).height());
+    		$footer = $("#footer");
+    		footerOffset = $footer.offset(),
+    		footerMargin = parseInt($footer.css('margin-top')),
+    		firstLoad = false;
     	}
 
-        // var shouldBeFixed = scrollTop > menuY;
-        // if (shouldBeFixed && !isFixed) {
-        //     menu.css({
-        //         position: 'fixed',
-        //         top: 0,
-        //         left: menu.offset().left,
-        //         width: menu.width()
-        //     });
-        //     isFixed = true;
-        // }
-        // else if (!shouldBeFixed && isFixed)
-        // {
-        //     menu.css({
-        //         position: 'static'
-        //     });
-        //     isFixed = false;
-        // }
-    });
+
+        if ($window.scrollTop() > (offset.top - topPadding)) {
+    		if ($window.scrollTop() < (footerOffset.top - topPadding - $sidebar.height() - sidebarPadding - footerMargin)) {
+            	$sidebar.stop().animate({
+                	marginTop: $window.scrollTop() - offset.top + topPadding
+                })
+            } else {
+            	console.log($window.scrollTop()),
+            	console.log($sidebar.css('margin-top')),
+            	console.log("------"),
+            	console.log("(" + footerOffset.top + ")  - " + $sidebar.height() + " - " + sidebarPadding + " - " + footerMargin),
+            	$sidebar.stop().animate({
+            		marginTop: ((footerOffset.top) - $sidebar.height() - sidebarPadding - footerMargin - offset.top)
+            	})
+            }
+    	} else {
+            $sidebar.stop().animate({
+                marginTop: 0
+            });
+        }
+    	});
+   		
+
 
 	global.$hlryd = hlryd;
 
