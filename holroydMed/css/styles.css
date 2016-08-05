@@ -202,12 +202,19 @@ body {
 
  /* Links Page */
 
-#links a {
+ #links a {
+  text-decoration: none;
+  color: #015249;
+
+}
+
+#links a:hover {
   text-decoration: none;
   background-color: #015249;
   padding: 10px;
   border-radius: 4px;
   margin-bottom: 10px;
+  color: #fff;
 
 }
 
