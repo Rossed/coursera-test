@@ -6,7 +6,7 @@
     <title>Holroyd Medical Practice</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/styles.css">
-    <link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,400italic,700' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Oxygen:400,300,700' rel='stylesheet' type='text/css'>
 </head>
 <body>
@@ -15,17 +15,18 @@
 			<div class="container">
 				<div class="navbar-header"> 
 					<a href="index.html" class="pull-left">
-            			<div id="logo-img" alt="Logo image"></div>
+            			<div id="logo-img" class="hidden-sm hidden-xs" alt="Logo image"></div>
           			</a>
 				</div>
 
 				<div class="navbar-brand">
            			 <a href="index.html">
-           			 	<h1 id="Hol">Holroyd</h1>
+           			 	<!-- <h1 id="Hol">Holroyd</h1>
            			 	<br>
            			 	<h1 id="Med">Mecical</h1>
            			 	<br>
-           			 	<h1 id="Pra">Practice</h1>
+           			 	<h1 id="Pra">Practice</h1> -->
+                  <h1 class="text-center">Holroyd Medical Practice</h1>
        			 	</a>
           		</div>
 			</div>
@@ -33,7 +34,7 @@
 	</header>
 
 	<div id="main-content" class="container">
-		<div id="side-bar" class="col-xs-2 fixed">
+		<div id="side-bar" class="col-sm-2 fixed hidden-sm hidden-xs">
 			<ul id="side-barList" class="list-unstyled">
 				<a href="#" onclick="$hlryd.selected('Home');"><li id="Home" class="selected"><span class="glyphicon glyphicon-home"></span> Home</li></a>
 				<a href="#" onclick="$hlryd.selected('History');"><li id="History" class=""><span class="glyphicon glyphicon-book"></span> History</li></a>
@@ -43,7 +44,7 @@
 				<a href="#" onclick="$hlryd.selected('Links');"><li id="Links"><span class="glyphicon glyphicon-link"></span> Links</li></a>
 			</ul>			
 		</div>
-		<div id="changable-content" class="col-xs-10"></div>
+		<div id="changable-content" class="col-md-10 col-sm-12"></div>
 
   	</div>
 
