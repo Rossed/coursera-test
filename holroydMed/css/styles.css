@@ -19,6 +19,9 @@ body {
   height: 150px;
   margin: 10px 15px 10px 0;
 }
+.navbar {
+  margin-bottom: 0px;
+}
 .navbar-brand {
   padding-top: 25px;
 }
@@ -48,6 +51,13 @@ body {
 .navbar-brand a:hover, .navbar-brand a:focus {
   text-decoration: none;
 }
+.navbar-header button.navbar-toggle, .navbar-header .icon-bar {
+  border: 1px solid #fff;
+}
+/*.navbar-header button.navbar-toggle {
+  clear: both;
+  margin-top: 73px;
+}*/
 
   /* Footer */
 .panel-footer {
@@ -117,26 +127,31 @@ body {
   	text-align: center;
 }
 
-#side-bar a {
+#collapsable-nav {
+  text-align: center;
+  border-bottom: 1px solid #015249;
+}
+
+#side-bar a, #collapsable-nav a {
   	text-decoration: none;
   	color: #015249;
 }
-#side-bar ul {
+#side-bar ul, #collapsable-nav ul {
   	margin-bottom: 0px;
 }
-#side-bar li {
+#side-bar li, #collapsable-nav li {
 	margin-bottom: 5px;
 	padding: 5px;
 }
-#side-bar li:hover, .selected {
+#side-bar li:hover, .selected, #collapsable-nav li:hover {
 	color: #fff;
 	border-radius: 4px;
 	background-color: #015249;
 }
-#side-bar li:hover a{
+#side-bar li:hover a, #collapsable-nav li:hover a{
 	color: #fff;
 }
-#side-bar button {
+#side-bar button, #collapsable-nav button {
   border: none;
   background-color: #fff;
   padding: 0px;
