@@ -10,13 +10,14 @@
     <link href='https://fonts.googleapis.com/css?family=Oxygen:400,300,700' rel='stylesheet' type='text/css'>
 </head>
 <body>
+  <div id="o-wrapper" class="o-wrapper">
 	<header>
 		<nav id="header-nav" class="navbar navbar-default">
 			<div class="container">
 				<div class="navbar-header"> 
 					<a href="index.html" class="pull-left">
-            			<div id="logo-img" class="hidden-sm hidden-xs" alt="Logo image"></div>
-          			</a>
+        			<div id="logo-img" class="hidden-sm hidden-xs" alt="Logo image"></div>
+      			</a>
 				</div>
 
 				<div class="navbar-brand">
@@ -28,9 +29,10 @@
            			 	<h1 id="Pra">Practice</h1> -->
                   <h1 class="text-center">Holroyd Medical Practice</h1>
        			 	</a>
-          		</div>
+        		</div>
 			</div>
 		</nav>
+
 	</header>
 
 	<div id="main-content" class="container">
@@ -40,7 +42,7 @@
 				<a href="#" onclick="$hlryd.selected('History');"><li id="History" class=""><span class="glyphicon glyphicon-book"></span> History</li></a>
 				<a href="#" onclick="$hlryd.selected('Doctors')"><li id="Doctors"><span class="glyphicon glyphicon-plus-sign"></span> Doctors</li></a>
 				<a href="#" onclick="$hlryd.selected('Staff');"><li id="Staff"><span class="glyphicon glyphicon-user"></span> Staff</li></a>
-				<a href="#" onclick="$hlryd.selected('Services');"><li id="Services"><span class="glyphicon glyphicon-eye-open"></span> Services</li></a>
+        <div class="c-buttons"><button id="c-button--push-left" class="c-button"><li id="Services"><span class="glyphicon glyphicon-eye-open"></span> Services</li></button></div>
 				<a href="#" onclick="$hlryd.selected('Links');"><li id="Links"><span class="glyphicon glyphicon-link"></span> Links</li></a>
 			</ul>			
 		</div>
@@ -88,11 +90,53 @@
       </div>
     </div>
   </footer>
+  </div>
+
+  <nav id="c-menu--push-left" class="c-menu c-menu--push-left">
+    <button class="c-menu__close">&larr; Close Menu</button>
+    <ul class="c-menu__items">
+      <li class="c-menu__item"><a href="#" class="c-menu__link">General Medical</a></li>
+      <li class="c-menu__item"><a href="#" class="c-menu__link">Acupuncture</a></li>
+      <li class="c-menu__item"><a href="#" class="c-menu__link">ECG</a></li>
+      <li class="c-menu__item"><a href="#" class="c-menu__link">Lung Function Tests</a></li>
+      <li class="c-menu__item"><a href="#" class="c-menu__link">Immunisation</a></li>
+      <li class="c-menu__item"><a href="#" class="c-menu__link">Dressing &amp INR</a></li>
+      <li class="c-menu__item"><a href="#" class="c-menu__link">Minor Surgery</a></li>
+      <li class="c-menu__item"><a href="#" class="c-menu__link">Shared Pregnancy Care</a></li>
+      <li class="c-menu__item"><a href="#" class="c-menu__link">Fertility Medicine</a></li>
+      <li class="c-menu__item"><a href="#" class="c-menu__link">Pap Smears</a></li>
+      <li class="c-menu__item"><a href="#" class="c-menu__link">Pathology Collections</a></li>
+    </ul>
+  </nav>
+
+  <div id="c-mask" class="c-mask"></div><!-- /c-mask -->
 
   <!-- jQuery (Bootstrap JS plugins depend on it) -->
   <script src="js/jquery-2.1.4.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
   <script src="js/ajax-utils.js"></script>
+  <script src="js/classie.js"></script>
   <script src="js/script.js"></script>
+  <script src="js/menu.js"></script>
+  <script>
+      /**
+   * Push left instantiation and action.
+   */
+    /**
+   * Push left instantiation and action.
+   */
+  var pushLeft = new Menu({
+    wrapper: '#o-wrapper',
+    type: 'push-left',
+    menuOpenerClass: '.c-button',
+    maskId: '#c-mask'
+  });
+  var pushLeftBtn = document.querySelector('#c-button--push-left');
+  
+  pushLeftBtn.addEventListener('click', function(e) {
+    e.preventDefault;
+    pushLeft.open();
+  });
+  </script>
 </body>
 </html>

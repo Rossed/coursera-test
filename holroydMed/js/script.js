@@ -28,7 +28,6 @@
 		document.getElementById(keyWord).className += " selected";
 
 		$(window).load(function(){loaded=true});
-		console.log(loaded);
 	};
 
 	// On page load (before images or CSS)
