@@ -4,6 +4,12 @@ body {
   background-color: #fff;
   font-family: 'Oxygen', sans-serif;
 }
+@media (min-width: 768px) {
+  .navbar-collapse.collapse { 
+    display: none !important;
+  }
+}
+
 /** HEADER **/
 #header-nav {
   background-color: #77C9D4;
@@ -54,10 +60,6 @@ body {
 .navbar-header button.navbar-toggle, .navbar-header .icon-bar {
   border: 1px solid #fff;
 }
-/*.navbar-header button.navbar-toggle {
-  clear: both;
-  margin-top: 73px;
-}*/
 
   /* Footer */
 .panel-footer {
@@ -125,6 +127,7 @@ body {
   	border-radius: 4px;
   	padding: 10px;
   	text-align: center;
+    margin-top: 50px;
 }
 
 #collapsable-nav {
@@ -148,6 +151,14 @@ body {
 	border-radius: 4px;
 	background-color: #015249;
 }
+#collapsable-nav .selected {
+  margin-left: 10px;
+  margin-right: 10px;
+  }
+#collapsable-nav li:hover {
+  margin-left: 10px;
+  margin-right: 10px;
+  }
 #side-bar li:hover a, #collapsable-nav li:hover a{
 	color: #fff;
 }

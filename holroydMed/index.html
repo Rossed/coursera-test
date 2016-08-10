@@ -42,12 +42,12 @@
     <!-- Collapsable nav -->
     <div id="collapsable-nav" class="collapse navbar-collapse">
       <ul id="nav-list" class="nav navbar-nav navbar-right">
-        <a href="#" onclick="$hlryd.selected('Home');"><li id="Home" class="selected"><span class="glyphicon glyphicon-home"></span> Home</li></a>
-        <a href="#" onclick="$hlryd.selected('History');"><li id="History" class=""><span class="glyphicon glyphicon-book"></span> History</li></a>
-        <a href="#" onclick="$hlryd.selected('Doctors')"><li id="Doctors"><span class="glyphicon glyphicon-plus-sign"></span> Doctors</li></a>
-        <a href="#" onclick="$hlryd.selected('Staff');"><li id="Staff"><span class="glyphicon glyphicon-user"></span> Staff</li></a>
-        <div class="c-buttons"><button id="c-button--push-left" class="c-button"><li id="Services"><span class="glyphicon glyphicon-eye-open"></span> Services</li></button></div>
-        <a href="#" onclick="$hlryd.selected('Links');"><li id="Links"><span class="glyphicon glyphicon-link"></span> Links</li></a>
+        <a href="#" onclick="$hlryd.selected('Home');"><li id="Home" class="Home selected"><span class="glyphicon glyphicon-home"></span> Home</li></a>
+        <a href="#" onclick="$hlryd.selected('History');"><li id="History" class="History"><span class="glyphicon glyphicon-book"></span> History</li></a>
+        <a href="#" onclick="$hlryd.selected('Doctors')"><li id="Doctors" class="Doctors"><span class="glyphicon glyphicon-plus-sign"></span> Doctors</li></a>
+        <a href="#" onclick="$hlryd.selected('Staff');"><li id="Staff" class="Staff"><span class="glyphicon glyphicon-user"></span> Staff</li></a>
+        <div class="c-buttons"><button id="c-button--push-left" class="c-button"><li id="Services" class="Services"><span class="glyphicon glyphicon-eye-open"></span> Services</li></button></div>
+        <a href="#" onclick="$hlryd.selected('Links');"><li id="Links" class="Links"><span class="glyphicon glyphicon-link"></span> Links</li></a>
       </ul>
     </div>
     <!-- End Collapsable nav -->
@@ -58,12 +58,12 @@
 	<div id="main-content" class="container">
 		<div id="side-bar" class="col-sm-2 fixed hidden-xs">
 			<ul id="side-barList" class="list-unstyled">
-				<a href="#" onclick="$hlryd.selected('Home');"><li id="Home" class="selected"><span class="glyphicon glyphicon-home"></span> Home</li></a>
-				<a href="#" onclick="$hlryd.selected('History');"><li id="History" class=""><span class="glyphicon glyphicon-book"></span> History</li></a>
-				<a href="#" onclick="$hlryd.selected('Doctors')"><li id="Doctors"><span class="glyphicon glyphicon-plus-sign"></span> Doctors</li></a>
-				<a href="#" onclick="$hlryd.selected('Staff');"><li id="Staff"><span class="glyphicon glyphicon-user"></span> Staff</li></a>
-        <div class="c-buttons"><button id="c-button--push-left" class="c-button"><li id="Services"><span class="glyphicon glyphicon-eye-open"></span> Services</li></button></div>
-				<a href="#" onclick="$hlryd.selected('Links');"><li id="Links"><span class="glyphicon glyphicon-link"></span> Links</li></a>
+				<a href="#" onclick="$hlryd.selected('Home');"><li id="Home" class="Home selected"><span class="glyphicon glyphicon-home"></span> Home</li></a>
+				<a href="#" onclick="$hlryd.selected('History');"><li id="History" class="History"><span class="glyphicon glyphicon-book"></span> History</li></a>
+				<a href="#" onclick="$hlryd.selected('Doctors')"><li id="Doctors" class="Doctors"><span class="glyphicon glyphicon-plus-sign"></span> Doctors</li></a>
+				<a href="#" onclick="$hlryd.selected('Staff');"><li id="Staff" class="Staff"><span class="glyphicon glyphicon-user"></span> Staff</li></a>
+        <div class="c-buttons"><button id="c-button--push-left" class="c-button"><li id="Services" class="Services"><span class="glyphicon glyphicon-eye-open"></span> Services</li></button></div>
+				<a href="#" onclick="$hlryd.selected('Links');"><li id="Links" class="Links"><span class="glyphicon glyphicon-link"></span> Links</li></a>
 			</ul>			
 		</div>
 		<div id="changable-content" class="col-sm-10 col-xs-12"></div>
@@ -139,13 +139,12 @@
   <script src="js/bootstrap.min.js"></script>
   <script src="js/ajax-utils.js"></script>
   <script src="js/classie.js"></script>
-  <script src="js/script.js"></script>
+  <script src="js/bootstrap-toolkit.min.js"></script>
   <script src="js/menu.js"></script>
+  <script src="js/script.js"></script>
+  
   <script>
       /**
-   * Push left instantiation and action.
-   */
-    /**
    * Push left instantiation and action.
    */
   var pushLeft = new Menu({
@@ -154,9 +153,15 @@
     menuOpenerClass: '.c-button',
     maskId: '#c-mask'
   });
-  var pushLeftBtn = document.querySelector('#c-button--push-left');
+  var pushLeftBtn1 = document.querySelectorAll('#c-button--push-left')[0];
+  var pushLeftBtn2 = document.querySelectorAll('#c-button--push-left')[1];
+
   
-  pushLeftBtn.addEventListener('click', function(e) {
+  pushLeftBtn1.addEventListener('click', function(e) {
+    e.preventDefault;
+    pushLeft.open();
+  });
+  pushLeftBtn2.addEventListener('click', function(e) {
     e.preventDefault;
     pushLeft.open();
   });
