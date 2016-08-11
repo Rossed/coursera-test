@@ -9,6 +9,7 @@ body {
     display: none !important;
   }
 }
+button:focus {outline:0;}
 
 /** HEADER **/
 #header-nav {
@@ -44,9 +45,6 @@ body {
   left: 50%;
   margin-right: -50%;
   transform: translate(-50%, -50%);
-  /*margin-top: 0;
-  margin-bottom: 0;
-  line-height: .75;*/
 }
 .navbar-brand #Med {
 	margin-left: 50px;
@@ -60,6 +58,23 @@ body {
 .navbar-header button.navbar-toggle, .navbar-header .icon-bar {
   border: 1px solid #fff;
 }
+#navbarToggle {
+  position: absolute;
+  right: 20px;
+  top: 120px;
+  background-color: #77C9D4;
+}
+#navbarToggle:hover {
+  background-color: #fff;
+}
+#navbarToggle:hover .icon-bar {
+  color: #77C9D4;
+  border: 1px solid #77C9D4;
+}
+ #navbarToggle:focus {
+  outline: none;
+ }
+
 
   /* Footer */
 .panel-footer {

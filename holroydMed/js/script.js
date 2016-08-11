@@ -1,6 +1,15 @@
+$(function () { // Same as document.addEventListener("DOMContentLoaded"...
+
+  // Same as document.querySelector("#navbarToggle").addEventListener("blur",...
+  $("#navbarToggle").blur(function (event) {
+    var screenWidth = window.innerWidth;
+    if (screenWidth < 768) {
+      $("#collapsable-nav").collapse('hide');
+    }
+  });
+});
+
 (function (global) {
-
-
 	var hlryd = {};
 
 	var previousKeyword = 'Home';
@@ -81,6 +90,21 @@
 	global.$hlryd = hlryd;
 
 })(window);
+
+//Ensures menu diactivates when transitioning to larger viewport size
+
+(function ($, viewport) {
+        // Execute code each time window size changes
+        $(window).resize(
+            viewport.changed(function() {
+                if(viewport.is('>xs')) {
+                	$("#collapsable-nav").collapse('hide');
+                }
+            })
+        );
+
+
+})(jQuery, ResponsiveBootstrapToolkit);
 
 
 
