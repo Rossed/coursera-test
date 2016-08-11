@@ -16,7 +16,7 @@ $(function () { // Same as document.addEventListener("DOMContentLoaded"...
 
 	var homeHtmlUrl = "snippets/home-snippet.html",
 		histroyHTMLUrl = "snippets/history-snippet.html",
-		doctorsHTMLUrl = "snippets/history-snippet.html",
+		doctorsHTMLUrl = "snippets/doctors-snippet.html",
 		staffHTMLUrl = "snippets/history-snippet.html",
 		linkHTMLUrl = "snippets/links-snippet.html";
 

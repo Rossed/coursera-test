@@ -4,9 +4,18 @@ body {
   background-color: #fff;
   font-family: 'Oxygen', sans-serif;
 }
+/********** Any device larger than xs **********/
 @media (min-width: 768px) {
   .navbar-collapse.collapse { 
     display: none !important;
+  }
+  
+}
+/********** Extra small devices only **********/
+@media (max-width: 767px) {
+  #doctors-description .docCaption {
+    text-align: center;
+
   }
 }
 button:focus {outline:0;}
@@ -269,10 +278,51 @@ button:focus {outline:0;}
   border-radius: 4px;
   margin-bottom: 10px;
   color: #fff;
-
 }
 
- /* End Links Page */
+/* End Links Page */
+
+/* Doctors Page */
+
+.docRow {
+  margin-top: 50px;
+  margin-left: 0px;
+  margin-right: 0px;
+ }
+.docCaption h3 {
+  margin-top: 0px;
+
+}
+.docCaption p {
+  display: inline;
+  padding-left: 10px;
+
+}
+#doctors-description .docCaption ul {
+    list-style-type: none;
+    padding-left: 0px;
+}
+#doctors-description .picture {
+  height: 160px;
+}
+#drPE {
+  background: url('../images/Doctors/DrPeterEdwards.png') no-repeat center;
+}
+#drVO {
+  background: url("../images/Doctors/DrVeronicaO'Connell.png") no-repeat center;
+}
+#drNP {
+  background: url('../images/Doctors/DrNiranjanaPatel.png') no-repeat center;
+}
+#drJS {
+  background: url('../images/Doctors/DrJanakShah.png') no-repeat center;
+}
+ #drSS {
+  background: url('../images/Doctors/DrSanjivShah.png') no-repeat center;
+}
+
+
+  /* End Doctors Page */
 
  /**
  * Menu overview.
