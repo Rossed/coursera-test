@@ -17,7 +17,7 @@ $(function () { // Same as document.addEventListener("DOMContentLoaded"...
 	var homeHtmlUrl = "snippets/home-snippet.html",
 		histroyHTMLUrl = "snippets/history-snippet.html",
 		doctorsHTMLUrl = "snippets/doctors-snippet.html",
-		staffHTMLUrl = "snippets/history-snippet.html",
+		staffHTMLUrl = "snippets/staff-snippet.html",
 		linkHTMLUrl = "snippets/links-snippet.html";
 
 	// Convenience function for inserting innerHTML for 'select'

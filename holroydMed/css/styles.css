@@ -15,6 +15,13 @@ body {
 @media (max-width: 767px) {
   #doctors-description .docCaption {
     text-align: center;
+  }
+  .docCaption h3 {
+    margin-top: 10px !important;
+  }
+  .staffCaption h3 {
+    text-align: center;
+    margin-top: 10px !important;
 
   }
 }
@@ -133,8 +140,8 @@ button:focus {outline:0;}
 #AGPAaccredImage {
 	background: url('../images/AGPA.png') no-repeat;
 	width: 100px;
-  	height: 100px;
-  	margin: 10px auto 10px;
+	height: 100px;
+	margin: 10px auto 10px;
 
 }
 
@@ -146,12 +153,12 @@ button:focus {outline:0;}
 }
 
 #side-bar {
-  	background-color: #fff;
-  	border: 1px solid #015249;
-  	border-radius: 4px;
-  	padding: 10px;
-  	text-align: center;
-    margin-top: 50px;
+	background-color: #fff;
+	border: 1px solid #015249;
+	border-radius: 4px;
+	padding: 10px;
+	text-align: center;
+  margin-top: 50px;
 }
 
 #collapsable-nav {
@@ -160,11 +167,11 @@ button:focus {outline:0;}
 }
 
 #side-bar a, #collapsable-nav a {
-  	text-decoration: none;
-  	color: #015249;
+  text-decoration: none;
+  color: #015249;
 }
 #side-bar ul, #collapsable-nav ul {
-  	margin-bottom: 0px;
+  margin-bottom: 0px;
 }
 #side-bar li, #collapsable-nav li {
 	margin-bottom: 5px;
@@ -195,7 +202,6 @@ button:focus {outline:0;}
 /* End Home Page */
 
 /* History Page */
-
 #history-description .picture {
   margin-bottom: 15px;
 }
@@ -234,7 +240,6 @@ button:focus {outline:0;}
 }
 #historyPic {
   background: url('../images/History/historyPic.png') no-repeat center;
-/*  width: 190px;*/
   height: 130px;
 }
 
@@ -288,19 +293,17 @@ button:focus {outline:0;}
   margin-top: 50px;
   margin-left: 0px;
   margin-right: 0px;
- }
+}
 .docCaption h3 {
   margin-top: 0px;
-
 }
 .docCaption p {
   display: inline;
   padding-left: 10px;
-
 }
 #doctors-description .docCaption ul {
-    list-style-type: none;
-    padding-left: 0px;
+  list-style-type: none;
+  padding-left: 0px;
 }
 #doctors-description .picture {
   height: 160px;
@@ -320,9 +323,37 @@ button:focus {outline:0;}
  #drSS {
   background: url('../images/Doctors/DrSanjivShah.png') no-repeat center;
 }
+/* End Doctors Page */
 
+/* Staff Page */
+.staffRow {
+  margin-top: 50px;
+  margin-left: 0px;
+  margin-right: 0px;
+}
+.staffCaption h3 {
+  margin-top: 0px;
+}
+.staffCaption p {
+  display: inline;
+}
+#staff-description #practiceNursesPic {
+  height: 95px;
+  width: 145px;
+  background: url('../images/Staff/practiceNurses.png') no-repeat center;
+}
+#staff-description #practiceManagerPic {
+  height: 140px;
+  width: 140px;
+  background: url("../images/Staff/practiceManager.png") no-repeat center;
+}
+#staff-description #receptionistsPic {
+  height: 75px;
+  width: 180px;
+  background: url('../images/Staff/receptionists.png') no-repeat center;
+}
 
-  /* End Doctors Page */
+/* End Staff Page */
 
  /**
  * Menu overview.
