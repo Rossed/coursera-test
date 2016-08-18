@@ -35,6 +35,7 @@ $(function () { // Same as document.addEventListener("DOMContentLoaded"...
 
 	// Changes active menu option on side-bar
 	hlryd.selected = function (keyWord) {
+		console.log("bop");
 
 
 		hlryd.loadPage(keyWord);
@@ -92,7 +93,6 @@ $(function () { // Same as document.addEventListener("DOMContentLoaded"...
 })(window);
 
 //Ensures menu diactivates when transitioning to larger viewport size
-
 (function ($, viewport) {
         // Execute code each time window size changes
         $(window).resize(
