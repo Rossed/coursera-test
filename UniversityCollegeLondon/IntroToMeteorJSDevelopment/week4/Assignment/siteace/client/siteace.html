@@ -3,7 +3,20 @@
 </head>
 
 <body>
-	<!-- navbar  - you will be putting the login functions here -->
+	<!-- <div class="container">
+		{{> website_form}}
+		{{> website_list}}
+	</div> -->
+</body>
+
+<template name="ApplicationLayout">
+  {{> yield "navbar"}}
+  {{> yield "main"}}
+  
+</template>
+
+<template name="navbar">
+<!-- navbar  - you will be putting the login functions here -->
 	<nav class="navbar navbar-default">
 	  <div class="container-fluid">
 	    <div class="navbar-header">
@@ -16,15 +29,10 @@
 	    </div>
 	  </div>
 	</nav>
-
-	<div class="container">
-		{{> website_form}}
-		{{> website_list}}
-	</div>
-</body>
+</template>
 
 
-<template name="website_form">
+<template name="website_form"> 
 	<a class="btn btn-default js-toggle-website-form" href="#">
   		<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
 	</a>
@@ -42,7 +50,6 @@
 		    <label for="description">Description</label>
 		    <input type="text" class="form-control" id="description" placeholder="I found this site really useful for ...">
 		  </div>
-
 		  <button type="submit" class="btn btn-default">Submit</button>
 		</form>
 	</div>
@@ -50,11 +57,14 @@
 
 <!-- template that displays several website items -->
 <template name="website_list">
-	<ol>
-	{{#each websites}}
-	{{>website_item}}
-	{{/each}}
-	</ol>
+	<div class="container">
+		{{>website_form}}
+		<ol>
+			{{#each websites}}
+				{{>website_item}}
+			{{/each}}
+		</ol>
+	</div>
 </template>
 
 <!-- template that displays individual website entries -->
@@ -67,12 +77,45 @@
 	<p>
 		Added: {{createdOn}}
 	</p>
+	<p>
+		Up votes: {{upVote}}, Down votes: {{downVote}}
+	</p>
 	<a href="#" class="btn btn-default js-upvote">
 		<span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
 	</a>
 	<a href="#" class="btn btn-default js-downvote">
 		<span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
 	</a>
+	<a href="/{{_id}}"><button class="btn btn-default">See more</button></a>
 	<!-- you will be putting your up and down vote buttons in here! -->
 </li>
+</template>
+
+<template name="website_page">
+	<div class="container">
+		<h2><a href="{{url}}">{{title}}</a></h2>
+		<h3>Description</h3>
+		<p>{{description}}</p>
+		<br>
+		<p>
+			Added: {{createdOn}}
+		</p>
+		<p>
+			Up votes: {{upVote}}, Down votes: {{downVote}}
+		</p>
+		<h3>Comments:</h3>
+		<form class="js-submit-comment">
+			<input type="text" id="comment" placeholder="Leave a comment...">
+			<button class="btn btn-success">Submit</button>
+		</form>
+		<ol>
+			{{#each comments}}
+				{{>comment}}
+			{{/each}}
+		</ol>
+	</div>
+</template>
+
+<template name="comment">
+	<li>{{this}}</li>
 </template>

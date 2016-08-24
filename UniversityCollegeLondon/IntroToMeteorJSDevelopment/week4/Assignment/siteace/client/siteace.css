@@ -2,3 +2,6 @@
 .hidden_div{
 	display:none;
 }
+#comment {
+	width: 50%;
+}

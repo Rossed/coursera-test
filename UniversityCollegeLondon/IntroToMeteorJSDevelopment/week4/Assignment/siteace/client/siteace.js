@@ -1,120 +1,141 @@
-Websites = new Mongo.Collection("websites");
+/////
+// routing 
+/////
 
-if (Meteor.isClient) {
+Router.configure({
+  layoutTemplate: 'ApplicationLayout'
+});
 
-	/////
-	// template helpers 
-	/////
-
-	// helper function that returns all available websites
-	Template.website_list.helpers({
-		websites:function(){
-			return Websites.find({});
-		}
-	});
-
-
-	/////
-	// template events 
-	/////
-
-	Template.website_item.events({
-		"click .js-upvote":function(event){
-			// example of how you can access the id for the website in the database
-			// (this is the data context for the template)
-			var website_id = this._id;
-			console.log("Up voting website with id "+website_id);
-			// put the code in here to add a vote to a website!
-			// Websites.update({_id:website_id}, 
-   //              {$set: {rating:rating+1}});
-   			console.log(Websites.find({}));
-
-			return false;// prevent the button from reloading the page
-		}, 
-		"click .js-downvote":function(event){
-
-			// example of how you can access the id for the website in the database
-			// (this is the data context for the template)
-			var website_id = this._id;
-			console.log("Down voting website with id "+website_id);
-
-			// put the code in here to remove a vote from a website!
-
-			return false;// prevent the button from reloading the page
-		}
-	})
-
-	Template.website_form.events({
-		"click .js-toggle-website-form":function(event){
-			$("#website_form").toggle('slow');
-		}, 
-		"submit .js-save-website-form":function(event){
-
-			// here is an example of how to get the url out of the form:
-			var url = event.target.url.value;
-			var title = event.target.title.value;
-			var description = event.target.description.value;
-			console.log("The url they entered is: "+url);
-			$("#website_form").toggle('slow');
-			
-			//  put your website saving code in here!	
-			if (Meteor.user()) {
-				  Websites.insert({
-				    title: title, 
-    			    url: url, 
-    			    description: description, 
-    			    createdOn:new Date(),
-    		rating: 0
-				})
-
-				event.target.url.value = "";
-				event.target.title.value = "";
-				event.target.description.value = "";
-			} else {
-				alert("You must login to submit a website !");
-			}
-
-			return false;// stop the form submit from reloading the page
-
-		}
-	});
-}
-
-
-if (Meteor.isServer) {
-	// start up function that creates entries in the Websites databases.
-  Meteor.startup(function () {
-    // code to run on server at startup
-    if (!Websites.findOne()){
-    	console.log("No websites yet. Creating starter data.");
-    	  Websites.insert({
-    		title:"Goldsmiths Computing Department", 
-    		url:"http://www.gold.ac.uk/computing/", 
-    		description:"This is where this course was developed.", 
-    		createdOn:new Date(),
-    		rating: 0
-    	});
-    	 Websites.insert({
-    		title:"University of London", 
-    		url:"http://www.londoninternational.ac.uk/courses/undergraduate/goldsmiths/bsc-creative-computing-bsc-diploma-work-entry-route", 
-    		description:"University of London International Programme.", 
-    		createdOn:new Date(),
-    		rating: 0
-    	});
-    	 Websites.insert({
-    		title:"Coursera", 
-    		url:"http://www.coursera.org", 
-    		description:"Universal access to the world’s best education.", 
-    		createdOn:new Date(),
-    		rating: 0
-    	});
-    	Websites.insert({
-    		title:"Google", 
-    		url:"http://www.google.com", 
-    		description:"Popular search engine.", 
-    		createdOn:new Date(),
-    		rating: 0
-    	});
-    }
+Router.route('/', function () {
+  this.render('navbar', {
+    to:"navbar"
   });
-}
+  this.render('website_list', {
+    to:"main"
+  });
+});
+
+Router.route('/:_id', function() {
+	this.render('navbar', {
+		to: "navbar"
+	});
+	this.render('website_page', {
+		to: "main",
+		data: function() {
+			return Websites.findOne({_id:this.params._id});
+		}
+	});
+});
+
+/////
+// template helpers 
+/////
+
+// helper function that returns all available websites
+Template.website_list.helpers({
+	websites:function(){
+		return Websites.find({}, {sort:{upVote:-1}});
+	}
+});
+
+/////
+// Templateate events 
+/////
+
+Template.website_item.events({
+	"click .js-upvote":function(event){
+		// example of how you can access the id for the website in the database
+		// (this is the data context for the template)
+		var website_id = this._id;
+		console.log("Up voting website with id "+website_id);
+		// put the code in here to add a vote to a website!
+		var website = Websites.findOne({_id: website_id});
+
+		var website_upVotes = website.upVote;
+		website_upVotes = website_upVotes + 1;
+		Websites.update({_id:website_id}, 
+      					{$set: {upVote:website_upVotes}});
+
+		return false;// prevent the button from reloading the page
+	}, 
+	"click .js-downvote":function(event){
+
+		// example of how you can access the id for the website in the database
+		// (this is the data context for the template)
+		var website_id = this._id;
+		console.log("Down voting website with id "+website_id);
+		// put the code in here to remove a vote from a website!	
+		var website = Websites.findOne({_id: website_id});
+
+		var website_downVotes = website.downVote;
+		website_downVotes = website_downVotes + 1;
+		Websites.update({_id:website_id}, 
+      					{$set: {downVote:website_downVotes}});
+
+		return false;// prevent the button from reloading the page
+	}
+})
+
+Template.website_form.events({
+	"click .js-toggle-website-form":function(event){
+		$("#website_form").toggle('slow');
+	}, 
+	"submit .js-save-website-form":function(event){
+
+		// here is an example of how to get the url out of the form:
+		var url = event.target.url.value;
+		var title = event.target.title.value;
+		var description = event.target.description.value;
+		console.log("The url they entered is: "+url);
+		$("#website_form").toggle('slow');
+		
+		//  put your website saving code in here!	
+		if (Meteor.user()) {
+			  Websites.insert({
+			    title: title, 
+			    url: url, 
+			    description: description, 
+			    createdOn:new Date(),
+			    upVote:0,
+			    downVote:0,
+			    commentsNum:0,
+			    comments:[0]
+			})
+			event.target.url.value = "";
+			event.target.title.value = "";
+			event.target.description.value = "";
+			console.log(Websites.find());
+		} else {
+			alert("You must login to submit a website !");
+		}
+
+		return false;// stop the form submit from reloading the page
+
+	}
+});
+
+Template.website_page.events({
+	"submit .js-submit-comment":function(event){
+
+		var comment = event.target.comment.value;
+		var website_id = this._id;
+		var website = Websites.findOne({_id: website_id});
+		var commentsNum = website.commentsNum;
+
+		if (comment.length > 0) {
+			website.comments[commentsNum] = comment;
+			Websites.update({_id:website_id},
+							{$set: {comments:website.comments}})
+			commentsNum+=1;
+			Websites.update({_id:website_id}, 
+                			{$set: {commentsNum:commentsNum}});
+			
+		} else {
+			alert("Please enter a comment before pressin submit");
+		}
+
+		event.target.comment.value = "";
+		return false;// stop the form submit from reloading the page
+
+	}
+});
