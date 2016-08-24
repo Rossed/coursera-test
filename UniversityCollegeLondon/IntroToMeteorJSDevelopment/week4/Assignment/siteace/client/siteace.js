@@ -98,8 +98,7 @@ Template.website_form.events({
 			    createdOn:new Date(),
 			    upVote:0,
 			    downVote:0,
-			    commentsNum:0,
-			    comments:[0]
+			    comments:[]
 			})
 			event.target.url.value = "";
 			event.target.title.value = "";
@@ -117,24 +116,39 @@ Template.website_form.events({
 Template.website_page.events({
 	"submit .js-submit-comment":function(event){
 
-		var comment = event.target.comment.value;
-		var website_id = this._id;
-		var website = Websites.findOne({_id: website_id});
-		var commentsNum = website.commentsNum;
+		var comment = event.target.comment_input.value;
 
 		if (comment.length > 0) {
-			website.comments[commentsNum] = comment;
+			var website_id = this._id;
+			var website = Websites.findOne({_id: website_id});
+			var comments = website.comments;
+			var user;
+
+			if(Meteor.user()) {
+				user = Meteor.user().emails[0].address;
+
+			} else {
+				user = "anonymous"
+
+			}
+
+			var comment_obj = {
+				postedBy: user,
+				createdOn: new Date(),
+				comment: comment
+			}
+
+			comments.push(comment_obj);
+
 			Websites.update({_id:website_id},
-							{$set: {comments:website.comments}})
-			commentsNum+=1;
-			Websites.update({_id:website_id}, 
-                			{$set: {commentsNum:commentsNum}});
+							{$set: {comments: comments}});
+
 			
 		} else {
-			alert("Please enter a comment before pressin submit");
+			alert("Please enter a comment before pressing submit");
 		}
 
-		event.target.comment.value = "";
+		event.target.comment_input.value = "";
 		return false;// stop the form submit from reloading the page
 
 	}

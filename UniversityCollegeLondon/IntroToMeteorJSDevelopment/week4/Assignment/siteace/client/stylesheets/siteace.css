@@ -2,11 +2,10 @@
 .hidden_div{
 	display:none;
 }
-#comment_input {
+#comment {
 	width: 50%;
 }
-#postedOn {
+#comment #createdOn p {
 	color: gray;
 	font-style: italic;
-	font-size: 0.8em;
 }

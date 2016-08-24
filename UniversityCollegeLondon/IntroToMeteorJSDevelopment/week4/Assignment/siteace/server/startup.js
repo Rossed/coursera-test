@@ -10,7 +10,6 @@ if (!Websites.findOne()){
 		createdOn:new Date(), 
 		upVote:0,
 		downVote:0,
-	    commentsNum:0,
 	    comments:[]
 	});
 	 Websites.insert({
@@ -20,7 +19,6 @@ if (!Websites.findOne()){
 		createdOn:new Date(), 
 		upVote:0,
 		downVote:0,
-	    commentsNum:0,
 	    comments:[]
 	});
 	 Websites.insert({
@@ -30,7 +28,6 @@ if (!Websites.findOne()){
 		createdOn:new Date(), 
 		upVote:0,
 		downVote:0,
-	    commentsNum:0,
 	    comments:[]
 	});
 	Websites.insert({
@@ -40,7 +37,6 @@ if (!Websites.findOne()){
 		createdOn:new Date(), 
 		upVote:0,
 		downVote:0,
-	    commentsNum:0,
 	    comments:[]
 	});
 }

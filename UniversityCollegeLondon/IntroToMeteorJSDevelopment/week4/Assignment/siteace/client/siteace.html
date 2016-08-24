@@ -20,7 +20,7 @@
 	<nav class="navbar navbar-default">
 	  <div class="container-fluid">
 	    <div class="navbar-header">
-	      <a class="navbar-brand" href="#">
+	      <a class="navbar-brand" href="/">
 	        Site Ace
 	      </a>
 	      <div>
@@ -102,20 +102,23 @@
 		</p>
 		<p>
 			Up votes: {{upVote}}, Down votes: {{downVote}}
-		</p>
-		<h3>Comments:</h3>
+		</p><br>
 		<form class="js-submit-comment">
-			<input type="text" id="comment" placeholder="Leave a comment...">
+			<input type="text" id="comment_input" placeholder="Leave a comment...">
 			<button class="btn btn-success">Submit</button>
 		</form>
-		<ol>
+		<h3>Comments:</h3>
+		{{#if comments}}
+		<div>
 			{{#each comments}}
 				{{>comment}}
 			{{/each}}
-		</ol>
+		</div>	
+		{{/if}}
 	</div>
 </template>
 
 <template name="comment">
-	<li>{{this}}</li>
+	<p id="comment_tag">{{postedBy}}: {{comment}}</p>
+	<p id="postedOn">posted: {{createdOn}}</p><hr>
 </template>
