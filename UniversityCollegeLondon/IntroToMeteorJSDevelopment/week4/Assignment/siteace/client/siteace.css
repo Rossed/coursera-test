@@ -5,8 +5,21 @@
 #comment_input {
 	width: 50%;
 }
-#postedOn {
+#postedOn, #addedOn {
 	color: gray;
 	font-style: italic;
 	font-size: 0.8em;
+}
+.input-group{
+	display: block;
+}
+#search {
+	width: 20%;
+}
+#link-search {
+	text-decoration: none;
+	color: gray;
+}
+.js-unset-website-filter {
+	margin-bottom: 10px;
 }

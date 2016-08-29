@@ -8,7 +8,10 @@ Router.configure({
 
 Router.route('/', function () {
   this.render('navbar', {
-    to:"navbar"
+    to:"navbar", 
+    data: function() {
+    	Session.set("singlePageMode", undefined);
+    }
   });
   this.render('website_list', {
     to:"main"
@@ -17,7 +20,11 @@ Router.route('/', function () {
 
 Router.route('/:_id', function() {
 	this.render('navbar', {
-		to: "navbar"
+		to: "navbar",
+		data: function() {
+			Session.set("websiteFilter", undefined);
+			Session.set("singlePageMode", true)
+		}
 	});
 	this.render('website_page', {
 		to: "main",
@@ -31,16 +38,46 @@ Router.route('/:_id', function() {
 // template helpers 
 /////
 
-// helper function that returns all available websites
-Template.website_list.helpers({
-	websites:function(){
-		return Websites.find({}, {sort:{upVote:-1}});
+Template.navbar.helpers({
+	//helper function to check if in single page viewing mode
+	not_inSinglePageMode: function() {
+		if (Session.get("singlePageMode")) {
+			return false;
+		} else {
+			return true;
+		}
 	}
+})
+
+Template.website_list.helpers({
+	// helper function that returns all available websites
+	websites:function(){
+		if (Session.get("websiteFilter")) {
+			return Session.get("websiteFilter");
+		} else {
+			return Websites.find({}, {sort:{upVote:-1}});
+		}
+	}, 
+	//helper function that determines if websites 
+	//are being flitered due to seach
+	filtering_websites: function() {
+		if (Session.get("websiteFilter")) {
+			return true;
+		} else {
+			return false;
+		}
+	}, 
 });
 
 /////
 // Templateate events 
 /////
+
+Template.website_list.events({
+	'click .js-unset-website-filter': function() {
+		Session.set("websiteFilter", undefined);
+	}
+})
 
 Template.website_item.events({
 	"click .js-upvote":function(event){
@@ -73,7 +110,7 @@ Template.website_item.events({
       					{$set: {downVote:website_downVotes}});
 
 		return false;// prevent the button from reloading the page
-	}
+	},
 })
 
 Template.website_form.events({
@@ -103,14 +140,13 @@ Template.website_form.events({
 			event.target.url.value = "";
 			event.target.title.value = "";
 			event.target.description.value = "";
-			console.log(Websites.find());
 		} else {
-			alert("You must login to submit a website !");
+			alert("You must login to submit a website!");
 		}
 
 		return false;// stop the form submit from reloading the page
 
-	}
+	},
 });
 
 Template.website_page.events({
@@ -153,3 +189,52 @@ Template.website_page.events({
 
 	}
 });
+
+Template.navbar.events({
+	'submit .js-search-form':function(event){
+		var search = event.target.search.value;
+		var found_relavent_website = false;
+
+		var relavent_websites = [];
+		//Ensure user has entered something
+		if (search.length > 0) {
+			var words = search.split(" ");
+			//For all the words in the users search
+			for (i=0; i<words.length; i++) {
+				var word = words[i].toLowerCase();
+				//For all the webstites
+				for (object in Websites._collection._docs._map) {
+					var website_title_words = Websites.findOne({_id:object}).title.split(" ");
+					//For all the words in each website
+					for (j=0; j<website_title_words.length; j++) {
+						var website_title_word = website_title_words[j].toLowerCase();
+						//Check to see if search words match
+						if (word.localeCompare(website_title_word) == 0) {
+							if (relavent_websites.indexOf(object) < 0) {
+								found_relavent_website = true;
+								relavent_websites.push(Websites.findOne({_id:object}));
+								Session.set("websiteFilter", relavent_websites);
+							} 
+						} 
+					} //end 3rd for statement
+				} //end 2nd for statement
+			} //end 1st for statement
+		} //end 1st if statement
+
+		if (!found_relavent_website) {
+			alert("The search came up empty");
+		}
+
+		//reset search bar
+		event.target.search.value = "";
+
+		return false;
+	}
+});
+
+
+
+
+
+
+
