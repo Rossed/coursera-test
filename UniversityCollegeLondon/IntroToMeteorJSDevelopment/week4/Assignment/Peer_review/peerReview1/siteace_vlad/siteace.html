@@ -1,0 +1,97 @@
+<head>
+    <title>Siteace by Vlad</title>
+</head>
+
+<body> </body>
+<template name="ApplicationLayout">
+    <!-- navbar  - you will be putting the login functions here -->{{> yield "navbar"}}
+    <div class="container" id="main">
+        <div class="row">
+            <div class="col-md-8">
+                <h3>Listed sites:</h3> {{> yield "form"}} {{> yield "main"}} </div>
+            <div class="col-md-4 well">
+                <h3>Search for a site:</h3> {{> searchBox}} </div>
+        </div>
+    </div>
+</template>
+<template name="navbar">
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button> <a class="navbar-brand" href="/">Site Ace <span class="glyphicon glyphicon-link" aria-hidden="true"></span></a> </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="/">Home <span class="sr-only">(current)</span></a></li>
+                    <li>
+                        <button class="btn btn-link btn-block btn-login"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> {{> loginButtons}}</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</template>
+<template name="website_form"> {{#if currentUser}}
+    <a class="btn btn-default js-toggle-website-form" href="#"> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> </a> {{/if}}
+    <div id="website_form" class="hidden_div">
+        <form class="js-save-website-form">
+            <div class="form-group">
+                <label for="url">Site address</label>
+                <input type="text" class="form-control" id="url" placeholder="http://www.mysite.com"> </div>
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text" class="form-control" id="title" placeholder="Enter site title"> </div>
+            <div class="form-group">
+                <label for="description">Description</label>
+                <input type="text" class="form-control" id="description" placeholder="I found this site really useful for ..."> </div>
+            <button type="submit" class="btn btn-default js-submit">Submit</button>
+        </form>
+    </div>
+</template>
+<!-- template that displays several website items -->
+<template name="website_list">
+    <ol> {{#each websites}} {{>website_item}} {{/each}} </ol>
+</template>
+<!-- template that displays individual website entries -->
+<template name="website_item">
+    <li> <a href="{{_id}}">{{title}}</a>
+        <p> {{description}} </p>
+        <a href="#" class="btn btn-default js-upvote"> <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span> </a>
+        <a href="#" class="btn btn-default js-downvote"> <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span> </a>
+        <p class="website-meta">Added: {{formattedDate}} | <span class="js-votes-up">{{up}}</span>↑, <span class="js-votes-down">{{down}}</span>↓</p>
+        <!-- you will be putting your up and down vote buttons in here! -->
+    </li>
+</template>
+<template name="searchBox"> {{> EasySearch.Input index=websitesIndex }}
+    <br />
+    <br />
+    <h4>Results:</h4>
+    <br /> {{#EasySearch.Each index=websitesIndex }}
+    <h5 class="list-group-item-heading">{{title}}</h5>
+    <p><a href="{{url}}">Go to site</a></p> {{/EasySearch.Each}} </template>
+<template name="website_detail">
+    <h1><a href="{{url}}">{{title}}</a></h1>
+    <p> {{description}} </p>
+    <a href="#" class="btn btn-default js-upvote"> <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span> </a>
+    <a href="#" class="btn btn-default js-downvote"> <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span> </a>
+    <p class="website-meta">Votes: <span class="js-votes-up">{{up}}</span>↑, <span class="js-votes-down">{{down}}</span>↓</p> {{>comments_list}} {{>comment_item}} {{>comment_form}} </template>
+<!-- template that displays several comments -->
+<template name="comments_list">
+    <h3>Comments</h3>
+    <ol> {{#each comments}} {{>comment_item}} {{/each}} </ol>
+</template>
+<!-- template that displays individual comment entries -->
+<template name="comment_item">
+    <li> {{comment}}
+        <p class="comment-meta">{{formattedDate}} by {{getUser user}}</p>
+    </li>
+</template>
+<!-- template that displays the form to submit a new comment -->
+<template name="comment_form">
+    <div id="comment_form">
+        <form class="js-save-comment-form">
+            <div class="form-group">
+                <input type="text" class="form-control" id="comment" placeholder="Type your comment here..."> </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+        </form>
+    </div>
+</template>

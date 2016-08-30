@@ -1,0 +1,57 @@
+.hidden_div{
+    display:none;
+}
+
+.card {
+    padding: 20px;
+    background-color: #eee;
+    margin: 20px 0;
+	background-color:#DBE7D1;
+}
+
+.rank {
+    position: relative;
+    float:left;
+    margin-top: 12px;
+    margin-right: 20px;
+    font-size: 25px;
+    color: #ddd;
+}
+
+.column-middle {
+    width: 20px;
+    display: inline-block;
+
+}
+
+.column-right {
+    widht: 500px;
+    display: inline-block;
+}
+
+.column-right p {
+    margin-bottom: 0;
+}
+
+.tagline {
+    font-size: 10px;
+    color: #999;
+}
+
+.comments {
+    background-color: #eee;
+}
+
+.site-detail {
+    min-height: 200px;
+}
+
+.comment {
+    margin-top: 20px;
+    background-color: #fafafa;
+    padding: 10px;
+}
+.glyphicon{
+	font-size: 2em;
+	width: 40px;
+}

@@ -1,0 +1,9 @@
+/* CSS declarations go here */
+
+.hidden_div {
+    display: none;
+}
+
+.btn-login {
+    margin-top: 10px;
+}
