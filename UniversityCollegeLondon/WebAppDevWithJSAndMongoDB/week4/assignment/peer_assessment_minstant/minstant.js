@@ -45,9 +45,9 @@ if (Meteor.isClient) {
 	    if (chatId){// looking good, save the id to the session
 	      Session.set("chatId",chatId);
 	    }
+	}
 	    this.render("navbar", {to:"header"});
 	    this.render("chat_page", {to:"main"}); 
-	}
    });
 
   ///
@@ -70,6 +70,14 @@ if (Meteor.isClient) {
       else {
         return false;
       }
+    },
+    online:function(userId) {
+    	if(Meteor.users.findOne({_id:userId}).services.resume &&
+    		Meteor.users.findOne({_id:userId}).services.resume.loginTokens.length > 0) {
+    		return true;
+    	} else {
+    		return false
+    	}
     }
   })
   Template.chat_page.helpers({
@@ -78,7 +86,14 @@ if (Meteor.isClient) {
       return chat.messages;
     }, 
     other_user:function(){
-      return "";
+    	var chat = Chats.findOne({_id:Session.get("chatId")})
+    	if (Meteor.userId() == chat.user1Id) {
+    		var username = Meteor.users.findOne({_id:chat.user2Id}).profile.username;
+    		return username;
+    	} else {
+    		var username = Meteor.users.findOne({_id:chat.user1Id}).profile.username;
+    		return username;
+    	}
     }, 
   })
   Template.chat_message.helpers({
@@ -129,7 +144,6 @@ if (Meteor.isClient) {
   }
  })
 }
-
 
 // start up script that creates some users for testing
 // users have the username 'user1@test.com' .. 'user8@test.com'

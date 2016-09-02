@@ -40,7 +40,7 @@
 	<h2>Choose someone to chat with:</h2>
 	<div class="row">
 	{{#each users}}
-	{{> available_user}}
+		{{> available_user}}
 	{{/each}}
 </div>
 </template>
@@ -55,6 +55,12 @@
 				<img src="/{{profile.avatar}}" class="avatar_img">			
 			</div>
 			{{else}}
+				{{#if online _id}}
+					<span class="label label-success">online</span>
+				{{else}}
+					<span class="label label-danger">offline</span>
+				{{/if}} 
+				
 			<a href="/chat/{{_id}}">
 				{{getUsername _id}}
 				<br/>
@@ -68,7 +74,8 @@
 
 <!-- Top level template for the chat page -->
 <template name="chat_page">
-	<h2>Type in the box below to send a message!</h2>
+	<h2>Your talking to {{other_user}}</h2>
+	<h3>Type in the box below to send a message!</h3>
 	<div class="row">
 		<div class="col-md-12">
 			<div>
