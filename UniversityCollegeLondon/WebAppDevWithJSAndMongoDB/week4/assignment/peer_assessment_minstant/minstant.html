@@ -71,7 +71,7 @@
 	<h2>Type in the box below to send a message!</h2>
 	<div class="row">
 		<div class="col-md-12">
-			<div class="well well-lg">
+			<div>
 			{{#each messages}}
 				{{> chat_message}}
 			{{/each}}
@@ -80,18 +80,22 @@
 	</div>
     <div class="row">
 		<div class="col-md-12">
-			<form class="js-send-chat">
-			<input class="input" type="text" name="chat" placeholder="type a message here...">
-			<button class="btn btn-default">send</button>
-		</form>
+		  <form class="js-send-chat">
+			<input class="input" id="message_input" type="text" name="chat" placeholder="type a message here...">
+			<button class="btn btn-primary">send</button>
+		  </form>
 		</div>
 	</div>
 </template>
 
 <!-- simple template that displays a message -->
 <template name="chat_message">
-	 <img src="/{{display_pic}}" height="20px" width="20px">  said: {{text}}
-	<br>
+  <div class="row">
+	<div class="well well-lg {{message_sender}}" id="message">
+	  <img src="/{{display_pic}}" height="20px" width="20px">  said: {{text}}
+	  <br>
+	</div>
+  </div>
 </template>
 
 

@@ -46,7 +46,7 @@ if (Meteor.isClient) {
 	      Session.set("chatId",chatId);
 	    }
 	    this.render("navbar", {to:"header"});
-	    this.render("chat_page", {to:"main"});  
+	    this.render("chat_page", {to:"main"}); 
 	}
    });
 
@@ -83,7 +83,14 @@ if (Meteor.isClient) {
   })
   Template.chat_message.helpers({
   	display_pic: function() {
-  		return this.sender_dp;
+  		return this.sender.profile.avatar;
+  	},
+  	message_sender:function() {
+  		if (this.sender._id == Meteor.user()._id) {
+  			return "floatMeRight";
+  		} else {
+  			return;
+  		};
   	}
   })
 
@@ -108,7 +115,7 @@ if (Meteor.isClient) {
       // (i.e. the user) into the database?? certainly not. 
       // push adds the message to the end of the array
       msgs.push({
-      	sender_dp: Meteor.user().profile.avatar,
+      	sender: Meteor.user(),
       	text: event.target.chat.value,
 		});
       // reset the form
@@ -117,7 +124,7 @@ if (Meteor.isClient) {
       chat.messages = msgs;
       // update the chat object in the database.
       // Chats.update(chat._id, chat);
-      Meteor.call('updateChat', chat)
+      Meteor.call('updateChat', chat)     
     }
   }
  })
