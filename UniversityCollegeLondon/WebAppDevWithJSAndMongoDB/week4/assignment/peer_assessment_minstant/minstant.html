@@ -74,10 +74,9 @@
 
 <!-- Top level template for the chat page -->
 <template name="chat_page">
-	<h2>Your talking to {{other_user}}</h2>
-	<h3>Type in the box below to send a message!</h3>
 	<div class="row">
 		<div class="col-md-12">
+			<h2 class="text-center">Your talking to {{other_user}}</h2>
 			<div>
 			{{#each messages}}
 				{{> chat_message}}
@@ -87,10 +86,47 @@
 	</div>
     <div class="row">
 		<div class="col-md-12">
+		<div class="div-chat-input">
+		  <h3 class="text-center">Type in the box below to send a message!</h3>
 		  <form class="js-send-chat">
-			<input class="input" id="message_input" type="text" name="chat" placeholder="type a message here...">
-			<button class="btn btn-primary">send</button>
+			<input class="input pull-left" id="message_input" type="text" name="chat" placeholder="type a message here...">
+			<!-- <div contenteditable="true" class="input pull-left" id="message_input">
+ 			</div>
+ -->
+			<!-- start emoticon dropdown menu -->
+		    <div class="dropdown pull-left" id="menu-emoticon-container">
+		    <div>
+		        <a href="#" class="dropdown-toggle" data-toggle="dropdown"> 
+		        	<img class="meteoremoticon" id="menu-emoticon-image" src="/packages/mattimo_emoticons/assets/images/emoticons/caritas_07.png">
+		        <b class="caret"></b></a>
+		        <ul class="dropdown-menu js-insert-emoticon">
+		            <li>
+		                <div class="row" style="width: 200px;">
+		                    <ul class="list-unstyled col-md-4">
+		                        <li id="emoji">{{{parseEmoticons ":)"}}}</li>
+		                        <li>{{{parseEmoticons ":("}}}</li>
+		                        <li>{{{parseEmoticons ":o"}}}</li>
+		                    </ul>
+		                    <ul class="list-unstyled col-md-4">
+		                        <li>{{{parseEmoticons ":S"}}}</li>
+		                        <li>{{{parseEmoticons ";)"}}}</li>
+		                        <li>{{{parseEmoticons ":P"}}}</li>
+		                    </ul>
+		                    <ul class="list-unstyled col-md-4">
+		                        <li>{{{parseEmoticons "-_-"}}}</li>
+		                        <li>{{{parseEmoticons ":D"}}}</li>
+		                        <li>{{{parseEmoticons ":smirk:"}}}</li>
+		                    </ul>
+		                </div>
+		            </li>
+		        </ul>
+		        </div>
+		    </div>
+			<!-- end emoticon dropdown menu -->
+
+			<button class="btn btn-primary" id="btn-chat-send">send</button>
 		  </form>
+		</div>
 		</div>
 	</div>
 </template>

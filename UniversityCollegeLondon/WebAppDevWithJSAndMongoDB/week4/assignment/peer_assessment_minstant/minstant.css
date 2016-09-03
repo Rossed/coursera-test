@@ -1,5 +1,6 @@
 /* CSS declarations go here */
 
+/*********** available_user ***************/
 .user_avatar {
 	min-height:100px;
 	text-align: center;
@@ -8,15 +9,113 @@
 .avatar_img {
 	height:75px;
 }
+/*********** chat_message ***************/
 #message {
 	padding-bottom: 10px;
 	padding-top: 10px;
 	margin-bottom: 10px;
-	width: 95%;
-}
-#message_input {
+	margin-left:15px; 
 	width: 90%;
 }
 .floatMeRight {
 	float: right;
+	margin-right:15px;
+	background-color: #ADD8E6;
+	color: white;
 }
+/*[contenteditable] {
+  border: 1px solid #000;
+  line-height: 32px;
+  -webkit-appearance: textfield;
+  appearance: textfield;
+  overflow: auto;
+  white-space: nowrap;
+}*/
+
+/*********** chat_page ***************/
+#menu-emoticon-container {
+	border: 1px solid #d3d3d3;
+	background-color: #d3d3d3;
+	height: 34px;
+}
+#message_input {
+	height: 34px;
+}
+#menu-emoticon-image {
+	height: 15px;
+	margin-top: 10px;
+}
+#btn-chat-send {
+	border-top-left-radius: 0px;
+	border-bottom-left-radius: 0px;
+	margin-bottom: 150px;
+}
+.caret {
+	margin-top: 10px;
+	color: gray;
+}
+.div-chat-input {
+	width: 80%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+/***************** MEDIA QUERIIES ******************/
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+	/*********** chat_page ***************/
+	#message_input {
+		width: 85%;
+	}
+	#btn-chat-send {
+		width: 10%;
+	}
+	#menu-emoticon-container {
+		width: 5%;
+	}
+}
+/* Small devices (tablets, 768px and up) */
+@media (max-width: 991px) {
+	/*********** chat_page ***************/
+	#message_input {
+		width: 73%;
+	}
+	#btn-chat-send {
+		width: 20%;
+	}
+	#menu-emoticon-container {
+		width: 7%;
+	}
+}
+/* Extra small devices (mobile devices, 767px and below) */
+@media (max-width: 767px) {
+	/*********** chat_page ***************/
+	#message_input {
+		width: 72%;
+	}
+	#btn-chat-send {
+		width: 20%;
+	}
+	#menu-emoticon-container {
+		width: 8%;
+	}
+	/*********** chat_message ***************/
+	#message {
+		width: 85%;
+	}
+}
+/* Extra  extra small devices (mobile devices, 767px and below) */
+@media (max-width: 500px) {
+	/*********** chat_page ***************/
+	#message_input {
+		width: 69%;
+	}
+	#btn-chat-send {
+		width: 20%;
+	}
+	#menu-emoticon-container {
+		width: 11%;
+	}
+}
+

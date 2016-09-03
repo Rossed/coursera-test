@@ -134,6 +134,7 @@ if (Meteor.isClient) {
       	text: event.target.chat.value,
 		});
       // reset the form
+      // document.querySelector('[contenteditable]').textContent = "";
       event.target.chat.value = "";
       // put the messages array onto the chat object
       chat.messages = msgs;
@@ -141,6 +142,9 @@ if (Meteor.isClient) {
       // Chats.update(chat._id, chat);
       Meteor.call('updateChat', chat)     
     }
+  },
+  'click .js-insert-emoticon':function(event) {
+  	document.querySelector('[contenteditable]').appendChild(event.target.cloneNode(true));
   }
  })
 }
