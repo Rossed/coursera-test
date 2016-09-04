@@ -39,14 +39,69 @@
 <template name="available_user_list">
 	<h2>Choose someone to chat with:</h2>
 	<div class="row">
-	{{#each users}}
-		{{> available_user}}
-	{{/each}}
-</div>
+		<div class="col-md-6">
+		<h2 class="text-center">Online</h2>
+		{{#each users}}
+			{{#if isMyUser _id}}
+			{{else}}
+				{{#if online _id}}
+						{{> online_user}}
+				{{/if}}
+			{{/if}}
+		{{/each}}
+		</div>
+		<div class="col-md-6">
+		<h2 class="text-center">Offline</h2>
+		{{#each users}}
+			{{#if isMyUser _id}}
+			{{else}}
+				{{#if online _id}}
+				{{else}}
+						{{> offline_user}}
+				{{/if}}
+			{{/if}}
+		{{/each}}
+		</div>
+
+
+			<!-- {{> available_user}} -->
+	</div>
+</template>
+
+<template name="online_user">
+	<div class="row">
+	<div class="col-xs-4"></div>
+		<div class="col-xs-4 display_username online">
+			<a href="/chat/{{_id}}">
+				<div id="circle" class="pull-left"></div><p class="username">{{getUsername _id}}</p>
+				<div class="display_pic">
+					<br/>
+					<img src="/{{profile.avatar}}" class="avatar_img">
+				</div>
+			</a>
+		</div>
+		<div class="col-xs-4"></div>
+	</div>
+</template>
+
+<template name="offline_user">
+	<div class="row">
+		<div class="col-xs-4"></div>
+		<div class="col-xs-4 display_username offline">
+			<a href="/chat/{{_id}}">
+				<div id="circle" class="pull-left"></div><p class="username">{{getUsername _id}}</p>
+				<div class="display_pic">
+					<br/>
+					<img src="/{{profile.avatar}}" class="avatar_img">
+				</div>
+			</a>
+		</div>
+		<div class="col-xs-4"></div>
+	</div>
 </template>
 
 <!-- display an individual user -->
-<template name="available_user">
+<!-- <template name="available_user">
 	<div class="col-md-2">
 		<div class="user_avatar">
 			{{#if isMyUser _id}} 
@@ -55,12 +110,14 @@
 				<img src="/{{profile.avatar}}" class="avatar_img">			
 			</div>
 			{{else}}
+			<div class="row">
 				{{#if online _id}}
 					<span class="label label-success">online</span>
 				{{else}}
 					<span class="label label-danger">offline</span>
 				{{/if}} 
-				
+			</div>
+
 			<a href="/chat/{{_id}}">
 				{{getUsername _id}}
 				<br/>
@@ -69,7 +126,7 @@
 			{{/if}}
 		</div>
 	</div>
-</template>
+</template> -->
 
 
 <!-- Top level template for the chat page -->

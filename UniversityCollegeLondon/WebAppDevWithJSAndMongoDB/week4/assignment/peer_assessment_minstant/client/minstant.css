@@ -9,6 +9,35 @@
 .avatar_img {
 	height:75px;
 }
+/*********** online_user, offline_user ***************/
+.display_username {
+	border: 1px solid black;
+	background-color: 
+}
+.display_pic {
+	display: none;
+}
+#circle {
+	margin-top: 5px;
+	margin-right: 5px;
+	width: 10px;
+	height: 10px;
+	-moz-border-radius: 50px;
+	-webkit-border-radius: 50px;
+	border-radius: 50px;
+}
+.username {
+	width: 50%;
+}
+.online, .offline {
+	margin-bottom: 10px;
+}
+.online #circle {
+	background: green;
+}
+.offline #circle {
+	background: #B41D1D;
+}
 /*********** chat_message ***************/
 #message {
 	padding-bottom: 10px;

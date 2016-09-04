@@ -1,8 +1,4 @@
-Chats = new Mongo.Collection("chats");
-
-if (Meteor.isClient) {
-
-  Meteor.subscribe("chats", function() {
+Meteor.subscribe("chats", function() {
   	Session.set('db_data_loaded', true);
   });
   Meteor.subscribe("users");
@@ -56,13 +52,7 @@ if (Meteor.isClient) {
   Template.available_user_list.helpers({
     users:function(){
       return Meteor.users.find();
-    }
-  })
- Template.available_user.helpers({
-    getUsername:function(userId){
-      user = Meteor.users.findOne({_id:userId});
-      return user.profile.username;
-    }, 
+    },
     isMyUser:function(userId){
       if (userId == Meteor.userId()){
         return true;
@@ -79,7 +69,42 @@ if (Meteor.isClient) {
     		return false
     	}
     }
+
   })
+  Template.online_user.helpers({
+  	getUsername:function(userId){
+      user = Meteor.users.findOne({_id:userId});
+      return user.profile.username;
+    }, 
+  })
+  Template.offline_user.helpers({
+  	getUsername:function(userId){
+      user = Meteor.users.findOne({_id:userId});
+      return user.profile.username;
+    }, 
+  })
+ // Template.available_user.helpers({
+ //    getUsername:function(userId){
+ //      user = Meteor.users.findOne({_id:userId});
+ //      return user.profile.username;
+ //    }, 
+ //    isMyUser:function(userId){
+ //      if (userId == Meteor.userId()){
+ //        return true;
+ //      }
+ //      else {
+ //        return false;
+ //      }
+ //    },
+ //    online:function(userId) {
+ //    	if(Meteor.users.findOne({_id:userId}).services.resume &&
+ //    		Meteor.users.findOne({_id:userId}).services.resume.loginTokens.length > 0) {
+ //    		return true;
+ //    	} else {
+ //    		return false
+ //    	}
+ //    }
+ //  })
   Template.chat_page.helpers({
     messages:function(){
       var chat = Chats.findOne({_id:Session.get("chatId")});
@@ -147,42 +172,19 @@ if (Meteor.isClient) {
   	document.querySelector('[contenteditable]').appendChild(event.target.cloneNode(true));
   }
  })
-}
 
-// start up script that creates some users for testing
-// users have the username 'user1@test.com' .. 'user8@test.com'
-// and the password test123 
+ ///
+ // onRendered
+ ///
 
-if (Meteor.isServer) {
-  Meteor.startup(function () {
-    if (!Meteor.users.findOne()){
-      for (var i=1;i<9;i++){
-        var email = "user"+i+"@test.com";
-        var username = "user"+i;
-        var avatar = "ava"+i+".png"
-        console.log("creating a user with password 'test123' and username/ email: "+email);
-        Meteor.users.insert({profile:{username:username, avatar:avatar}, emails:[{address:email}],services:{ password:{"bcrypt" : "$2a$10$I3erQ084OiyILTv8ybtQ4ON6wusgPbMZ6.P33zzSDei.BbDL.Q4EO"}}});
-      }
-    } 
-  });
-  Meteor.publish("chats", function() {
-  	return Chats.find();
-  });
-  Meteor.publish("users", function() {
-  	return Meteor.users.find();
-  });
-}
-
-///
-// Shared Folder
-///
-
-Meteor.methods({
-	insertChat:function(otherUserId) {
-		chatId = Chats.insert({user1Id:Meteor.userId(), user2Id:otherUserId});
-		return chatId;
-	}, 
-	updateChat:function(chat) {
-		Chats.update(chat._id, chat);
-	}
+Template.online_user.onRendered(function () {
+	$( ".display_username" ).hover(
+	  function() {
+	  	// console.log($(this.firstChild.nextElementSibling.children[2]));
+      $(this.firstChild.nextElementSibling.children[2]).css("display", "unset");
+	  }, function() {
+      $(this.firstChild.nextElementSibling.children[2]).css("display", "none");
+	  }
+	);
 });
+
