@@ -11,3 +11,4 @@ Meteor.methods({
 		Chats.update(chat._id, chat);
 	}
 });
+

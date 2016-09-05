@@ -13,6 +13,18 @@ Meteor.startup(function () {
     }
   } 
 });
+Accounts.onCreateUser(function (options, user) {
+  console.log(options.profile);
+  user.profile = {};
+  user.profile = options.profile;
+
+  if(user.profile.gender == "m") {
+    user.profile.avatar = "ava2.png";
+  } else {
+    user.profile.avatar = "ava1.png";
+  }
+  return user;
+});
 Meteor.publish("chats", function() {
 	return Chats.find();
 });
