@@ -19,7 +19,15 @@
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
-	margin-top: 10px;
+	border: 2px inset gray;
+}
+.online .background_avatar_img {
+	background-color: green;
+	padding-bottom: 10px;
+}
+.offline .background_avatar_img {
+	background-color: #B41D1D;
+	padding-bottom: 10px;
 }
 #circle {
 	margin-top: 6px;
@@ -73,6 +81,18 @@
 	background-color: #d3d3d3;
 	height: 34px;
 }
+#menu-emoticon-container div {
+	margin-top: 7px;
+}
+#menu-emoticon-container a {
+	text-decoration: none;
+}
+#menu-emoticon-container:hover {
+	background-color: #707070;
+}
+#menu-emoticon-container:hover .caret {
+	color: white;
+}
 #message_input {
 	height: 34px;
 }
@@ -86,7 +106,6 @@
 	margin-bottom: 150px;
 }
 .caret {
-	margin-top: 10px;
 	color: gray;
 }
 .div-chat-input {
@@ -94,11 +113,27 @@
 	margin-left: auto;
 	margin-right: auto;
 }
+.dropdown-list {
+	margin-left: 0px;
+}
 
 /***************** MEDIA QUERIIES ******************/
 
 /* Medium devices (desktops, 992px and up) */
-@media (min-width: 992px) {
+@media (min-width: 1200px) {
+	/*********** chat_page ***************/
+	#message_input {
+		width: 86.5%;
+	}
+	#btn-chat-send {
+		width: 10%;
+	}
+	#menu-emoticon-container {
+		width: 3.5%;
+	}
+}
+/* Medium devices (desktops, 992px and up) */
+@media (max-width: 1199px) {
 	/*********** chat_page ***************/
 	#message_input {
 		width: 85%;
@@ -144,13 +179,13 @@
 @media (max-width: 500px) {
 	/*********** chat_page ***************/
 	#message_input {
-		width: 69%;
+		width: 67%;
 	}
 	#btn-chat-send {
 		width: 20%;
 	}
 	#menu-emoticon-container {
-		width: 11%;
+		width: 13%;
 	}
 }
 

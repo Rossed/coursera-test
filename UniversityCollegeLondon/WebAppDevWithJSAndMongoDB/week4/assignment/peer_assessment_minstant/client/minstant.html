@@ -79,7 +79,9 @@
 					</div>
 				</div>
 				<div class="display_pic">
-					<img src="/{{profile.avatar}}" class="avatar_img">
+					<div class="background_avatar_img">
+						<img src="/{{profile.avatar}}" class="avatar_img">
+					</div>
 				</div>
 			</a>
 		</div>
@@ -98,7 +100,9 @@
 				</div>
 				</div>
 				<div class="display_pic">
-					<img src="/{{profile.avatar}}" class="avatar_img">
+					<div class="background_avatar_img">
+						<img src="/{{profile.avatar}}" class="avatar_img">
+					</div>
 				</div>
 			</a>
 		</div>
@@ -160,25 +164,30 @@
 		    <div class="dropdown pull-left" id="menu-emoticon-container">
 		    <div>
 		        <a href="#" class="dropdown-toggle" data-toggle="dropdown"> 
-		        	<img class="meteoremoticon" id="menu-emoticon-image" src="/packages/mattimo_emoticons/assets/images/emoticons/caritas_07.png">
+		        	{{getEmoji 'smile'}}
 		        <b class="caret"></b></a>
-		        <ul class="dropdown-menu js-insert-emoticon">
+		        <ul class="dropdown-menu js-insert-emoticon pull-right">
 		            <li>
-		                <div class="row" style="width: 200px;">
-		                    <ul class="list-unstyled col-md-4">
-		                        <li id="emoji">{{{parseEmoticons ":)"}}}</li>
-		                        <li>{{{parseEmoticons ":("}}}</li>
-		                        <li>{{{parseEmoticons ":o"}}}</li>
+		                <div class="row dropdown-list" style="width: 150px;">
+		                    <ul class="list-unstyled col-xs-3">
+		                        <li>{{getEmoji 'smile'}}</li>
+		                        <li>{{getEmoji 'blush'}}</li>
+		                        <li>{{getEmoji 'relaxed'}}</li>
 		                    </ul>
-		                    <ul class="list-unstyled col-md-4">
-		                        <li>{{{parseEmoticons ":S"}}}</li>
-		                        <li>{{{parseEmoticons ";)"}}}</li>
-		                        <li>{{{parseEmoticons ":P"}}}</li>
+		                    <ul class="list-unstyled col-xs-3">
+		                        <li>{{getEmoji 'wink'}}</li>
+		                        <li>{{getEmoji 'heart_eyes'}}</li>
+		                        <li>{{getEmoji 'kissing_heart'}}</li>
 		                    </ul>
-		                    <ul class="list-unstyled col-md-4">
-		                        <li>{{{parseEmoticons "-_-"}}}</li>
-		                        <li>{{{parseEmoticons ":D"}}}</li>
-		                        <li>{{{parseEmoticons ":smirk:"}}}</li>
+		                    <ul class="list-unstyled col-xs-3">
+		                        <li>{{getEmoji 'kissing_closed_eyes'}}</li>
+		                        <li>{{getEmoji 'stuck_out_tongue_winking_eye'}}</li>
+		                        <li>{{getEmoji 'stuck_out_tongue_closed_eyes'}}</li>
+		                    </ul>
+		                    <ul class="list-unstyled col-xs-3">
+		                        <li>{{getEmoji 'grin'}}</li>
+		                        <li>{{getEmoji 'pensive'}}</li>
+		                        <li>{{getEmoji 'disappointed'}}</li>
 		                    </ul>
 		                </div>
 		            </li>
@@ -198,7 +207,10 @@
 <template name="chat_message">
   <div class="row">
 	<div class="well well-lg {{message_sender}}" id="message">
-	  <img src="/{{display_pic}}" height="20px" width="20px">  said: {{text}}
+	  <img src="/{{display_pic}}" height="20px" width="20px">  said: 
+	  {{#emoji}}
+	  	{{text}}
+	  {{/emoji}}
 	  <br>
 	</div>
   </div>
