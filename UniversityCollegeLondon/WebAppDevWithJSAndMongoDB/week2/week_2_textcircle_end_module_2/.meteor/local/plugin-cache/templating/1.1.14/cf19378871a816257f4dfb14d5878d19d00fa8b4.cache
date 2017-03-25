@@ -1,0 +1,1 @@
+{"head":"","body":"","js":"\nTemplate.__checkName(\"_sharejsCM\");\nTemplate[\"_sharejsCM\"] = new Template(\"Template._sharejsCM\", (function() {\n  var view = this;\n  return HTML.DIV({\n    \"data-docid\": function() {\n      return Spacebars.mustache(view.lookup(\"docid\"));\n    },\n    \"class\": \"shareJSCM\"\n  });\n}));\n","bodyAttrs":{}}

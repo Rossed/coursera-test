@@ -1,0 +1,4 @@
+find()
+Documents.findOne()
+Documents.find()
+Documents.find().fetch()

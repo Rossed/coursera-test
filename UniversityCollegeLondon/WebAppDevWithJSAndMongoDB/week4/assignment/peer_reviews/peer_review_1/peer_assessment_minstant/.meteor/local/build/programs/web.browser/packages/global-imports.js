@@ -1,0 +1,42 @@
+/* Imports for global scope */
+
+Mongo = Package.mongo.Mongo;
+Session = Package.session.Session;
+$ = Package.jquery.$;
+jQuery = Package.jquery.jQuery;
+Tracker = Package.tracker.Tracker;
+Deps = Package.tracker.Deps;
+Router = Package['iron:router'].Router;
+RouteController = Package['iron:router'].RouteController;
+accountsUIBootstrap3 = Package['ian:accounts-ui-bootstrap-3'].accountsUIBootstrap3;
+SimpleSchema = Package['aldeed:simple-schema'].SimpleSchema;
+MongoObject = Package['aldeed:simple-schema'].MongoObject;
+moment = Package['momentjs:moment'].moment;
+Emojis = Package['lookback:emoji'].Emojis;
+Meteor = Package.meteor.Meteor;
+global = Package.meteor.global;
+meteorEnv = Package.meteor.meteorEnv;
+WebApp = Package.webapp.WebApp;
+_ = Package.underscore._;
+DDP = Package['ddp-client'].DDP;
+LaunchScreen = Package['launch-screen'].LaunchScreen;
+Blaze = Package.ui.Blaze;
+UI = Package.ui.UI;
+Handlebars = Package.ui.Handlebars;
+Spacebars = Package.spacebars.Spacebars;
+Template = Package.templating.Template;
+meteorInstall = Package.modules.meteorInstall;
+Buffer = Package.modules.Buffer;
+process = Package.modules.process;
+Symbol = Package['ecmascript-runtime'].Symbol;
+Map = Package['ecmascript-runtime'].Map;
+Set = Package['ecmascript-runtime'].Set;
+meteorBabelHelpers = Package['babel-runtime'].meteorBabelHelpers;
+Promise = Package.promise.Promise;
+Iron = Package['iron:core'].Iron;
+Accounts = Package['accounts-base'].Accounts;
+Collection2 = Package['aldeed:collection2-core'].Collection2;
+Autoupdate = Package.autoupdate.Autoupdate;
+Reload = Package.reload.Reload;
+HTML = Package.htmljs.HTML;
+

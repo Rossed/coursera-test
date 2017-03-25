@@ -1,0 +1,1 @@
+{"version":3,"sources":["meteor://💻app/image_share.js"],"names":[],"mappings":";;;;;;;;AAAA,IAAI,OAAO,QAAP,EAAgB,EAApB;;AAIA,IAAI,OAAO,QAAP,EAAgB;AACnB,QAAO,OAAP,CAAe,YAAU;;EAAV,CAAf,CADmB;CAApB,sE","file":"/app.js","sourcesContent":["if (Meteor.isClient){\n\n}\n\nif (Meteor.isServer){\n\tMeteor.startup(function(){\n\t\t// code to run on server at startup\n\t})\n}"]}

@@ -1,0 +1,1 @@
+{"head":"","body":"","js":"\nTemplate.__checkName(\"about\");\nTemplate[\"about\"] = new Template(\"Template.about\", (function() {\n  var view = this;\n  return HTML.Raw('<h2>This is a chat</h2>\\n  <p>Try to use emojis</p>\\n  <p><a href=\"http://www.webpagefx.com/tools/emoji-cheat-sheet/\">emojis cheatsheet</a></p>');\n}));\n","bodyAttrs":{}}
