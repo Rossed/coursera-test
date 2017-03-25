@@ -1,0 +1,144 @@
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/02/ALU.hdl
+
+/**
+ * The ALU (Arithmetic Logic Unit).
+ * Computes one of the following functions:
+ * x+y, x-y, y-x, 0, 1, -1, x, y, -x, -y, !x, !y,
+ * x+1, y+1, x-1, y-1, x&y, x|y on two 16-bit inputs, 
+ * according to 6 input bits denoted zx,nx,zy,ny,f,no.
+ * In addition, the ALU computes two 1-bit outputs:
+ * if the ALU output == 0, zr is set to 1; otherwise zr is set to 0;
+ * if the ALU output < 0, ng is set to 1; otherwise ng is set to 0.
+ */
+
+// Implementation: the ALU logic manipulates the x and y inputs
+// and operates on the resulting values, as follows:
+// if (zx == 1) set x = 0        // 16-bit constant
+// if (nx == 1) set x = !x       // bitwise not
+// if (zy == 1) set y = 0        // 16-bit constant
+// if (ny == 1) set y = !y       // bitwise not
+// if (f == 1)  set out = x + y  // integer 2's complement addition
+// if (f == 0)  set out = x & y  // bitwise and
+// if (no == 1) set out = !out   // bitwise not
+// if (out == 0) set zr = 1
+// if (out < 0) set ng = 1
+
+CHIP ALU {
+    IN  
+        x[16], y[16],  // 16-bit inputs        
+        zx, // zero the x input?
+        nx, // negate the x input?
+        zy, // zero the y input?
+        ny, // negate the y input?
+        f,  // compute out = x + y (if 1) or x & y (if 0)
+        no; // negate the out output?
+
+    OUT 
+        out[16], // 16-bit output
+        zr, // 1 if (out == 0), 0 otherwise
+        ng; // 1 if (out < 0),  0 otherwise
+
+    PARTS:
+   // Put you code here:
+
+   //Zero x input Mux
+   Mux16(a=x, b=false, sel=zx, out=wx1);  
+
+   //Negate x input
+   Not16(in=wx1, out=wx2);
+
+   //Negate x input Mux
+   Mux16(a=wx1, b=wx2, sel=nx, out=wx4);
+
+   //Zero y input Mux
+   Mux16(a=y, b=false, sel=zy, out=wy1);  
+
+   //Negate y input
+   Not16(in=wy1, out=wy2);
+
+   //Negate y input Mux
+   Mux16(a=wy1, b=wy2, sel=ny, out=wy4);
+
+   //Compute x + y
+   Add16(a=wx4, b=wy4, out=w1);
+
+   //Compute x & y
+   And16(a=wx4, b=wy4, out=w2);
+
+   //x + y || x & y Mux
+   Mux16(a=w2, b=w1, sel=f, out=w3);
+
+   //Negate output
+   Not16(in=w3, out=w4);
+
+   //Negate output Mux
+   Mux16(a=w3, b=w4, sel=no, out=out1);
+
+   //Symantics
+   Not16(in=out1, out=out2);
+   Not16(in=out2, out=out);
+
+   //Output is 0
+   Not16(in=out1, out[0]=check0, 
+                out[1]=check1, 
+                out[2]=check2, 
+                out[3]=check3, 
+                out[4]=check4, 
+                out[5]=check5, 
+                out[6]=check6, 
+                out[7]=check7, 
+                out[8]=check8, 
+                out[9]=check9, 
+                out[10]=check10, 
+                out[11]=check11, 
+                out[12]=check12, 
+                out[13]=check13, 
+                out[14]=check14,
+                out[15]=check15);
+   And(a=true, b=check0, out=checked1);
+   And(a=checked1, b=check1, out=checked2);
+   And(a=checked2, b=check2, out=checked3);
+   And(a=checked3, b=check3, out=checked4);
+   And(a=checked4, b=check4, out=checked5);
+   And(a=checked5, b=check5, out=checked6);
+   And(a=checked6, b=check6, out=checked7);
+   And(a=checked7, b=check7, out=checked8);
+   And(a=checked8, b=check8, out=checked9);
+   And(a=checked9, b=check9, out=checked10);
+   And(a=checked10, b=check10, out=checked11);
+   And(a=checked11, b=check11, out=checked12);
+   And(a=checked12, b=check12, out=checked13);
+   And(a=checked13, b=check13, out=checked14);
+   And(a=checked14, b=check14, out=checked15);
+   And(a=checked15, b=check15, out=zr);
+   //Output is less than zero
+   And16(a=true, b=out1, out[15]=ng);
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

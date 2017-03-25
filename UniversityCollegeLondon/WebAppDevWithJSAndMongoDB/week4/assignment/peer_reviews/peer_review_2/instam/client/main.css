@@ -1,0 +1,52 @@
+.nav-color {
+	background-color: #fff;
+}
+
+.top-under {
+	margin-top: 80px;
+}
+
+.jumbo-color {
+	background-color: #fff;
+}
+
+.jumbo-text {
+	font-family: monospace;
+	color: gray;
+	text-align: center;
+}
+
+.login-buttons {
+	padding-left: 290px;
+}
+
+.next-btn {
+	text-align: center;
+}
+
+.user-name {
+	padding-left: 40px;
+}
+
+.send-btn {
+	margin-top: 40px;
+	margin-left: -10px;
+}
+
+.well-color {
+	background-color: #fff;
+}
+
+.level-up-this {
+	margin-top: 25px;
+}
+
+.small-avatar {
+	max-height: 100%;
+	max-width: 40px;
+	padding-top: 10px;
+}
+
+.nowUser {
+	margin-left: 15px;
+}

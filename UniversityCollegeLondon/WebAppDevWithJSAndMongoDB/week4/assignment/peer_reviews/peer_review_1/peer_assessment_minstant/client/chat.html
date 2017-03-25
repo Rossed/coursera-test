@@ -1,0 +1,85 @@
+<!-- Top level template for the chat page -->
+<template name="chat_page">
+	<h2>Type in the box below to send a message to {{chatWith.profile.username}}!</h2>
+	<div class="row">
+		<div class="col-md-12">
+			<div class="well well-lg">
+			{{#each messages}}
+			{{> chat_message}}
+			{{/each}}
+			</div>
+		</div>
+	</div>
+    <div class="row">
+		<div class="col-md-12">
+			<form class="js-send-chat">
+				<div class="input-group">
+					<input class="input form-control" type="text" name="chat" placeholder="type a message here...">
+		      <span class="input-group-btn">
+		        <button class="btn btn-default" type="submit">Send</button>
+		      </span>
+		    </div>
+			</form>
+		</div>
+	</div>
+</template>
+
+<!-- simple template that displays a message -->
+<template name="chat_message">
+	<div class="
+		row
+		{{#if isOwner}}
+			bg-success
+		{{/if}}
+
+	">
+	  <div class="col-xs-3 col-md-2">
+	    <a href="#" class="thumbnail">
+	      <img class="media-object" src="/{{user.profile.avatar}}" alt="{{user.profile.username}}">
+	    </a>
+	  </div>
+	  <div class="col-xs-9 col-md-10">
+	    <h4 class="media-heading">
+				{{#if isOwner}}
+					You said
+			  {{else}}
+					{{user.profile.username}} said
+			  {{/if}}
+				{{#if createdOn}}
+					{{formatedDate}}
+				{{/if}}
+			</h4>
+			{{#emoji}}
+		  	{{text}}
+			{{/emoji}}
+	  </div>
+	</div>
+</template>
+<!-- <template name="chat_message">
+	{{#if isOwner}}
+		<div class="media">
+		  <div class="media-body">
+		    <h4 class="media-heading">{{user.profile.username}}</h4>
+			  {{text}}
+		  </div>
+		  <div class="media-right">
+		    <a href="#">
+		      <img class="media-object" src="{{user.profile.avatar}}" alt="{{user.profile.username}}">
+		    </a>
+		  </div>
+		</div>
+  {{else}}
+		<div class="media">
+		  <div class="media-left">
+		    <a href="#">
+		      <img class="media-object" src="{{user.profile.avatar}}" alt="{{user.profile.username}}">
+		    </a>
+		  </div>
+		  <div class="media-body">
+		    <h4 class="media-heading">{{user.profile.username}}</h4>
+			  {{text}}
+		  </div>
+		</div>
+  {{/if}}
+	<br>
+</template> -->

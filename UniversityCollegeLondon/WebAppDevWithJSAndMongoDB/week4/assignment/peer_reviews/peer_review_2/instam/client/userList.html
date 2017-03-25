@@ -1,0 +1,18 @@
+<template name="userList">
+	<div class="container top-under">
+		<br/>
+		{{#each user}}
+			<div class="col-md-3 col-xs-12">
+				<a href="/chat/{{_id}}" class="js_user_selected">
+					<img src="/{{profile.avatar}}">
+					<br/>
+					<h4 class="user-name"><span class="label label-default">{{profile.username}}</span>
+					<span class="label label-info">{{me _id}}</span>
+
+					</h4>
+
+				</a>
+			</div>
+		{{/each}}
+	</div>
+</template>

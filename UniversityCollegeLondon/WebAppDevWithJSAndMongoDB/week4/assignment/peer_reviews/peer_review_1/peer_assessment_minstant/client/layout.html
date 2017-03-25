@@ -1,0 +1,17 @@
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>minstant</title>
+</head>
+
+<body>
+</body>
+
+<!-- this is the main template used by iron:router to build the page -->
+
+<template name="ApplicationLayout">
+	{{> yield "header"}}
+
+	<div class="container">
+	{{> yield "main"}}
+	</div>
+</template>

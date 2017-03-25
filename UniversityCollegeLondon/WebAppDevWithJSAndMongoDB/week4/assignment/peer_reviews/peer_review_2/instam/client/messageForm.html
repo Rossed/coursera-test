@@ -1,0 +1,16 @@
+<template name="messageForm">
+  {{#autoForm collection="Chats" id="messageForm" type="method" meteormethod="sendMsg"}}
+    <div class="row">
+      <div class="col-md-10">
+        <fieldset>
+          {{> afQuickField name='message' rows=2}}
+         </fieldset>
+      </div>
+      <div class="col-md-2">
+        <button type="submit" class="btn send-btn">
+        <i class="fa fa-paper-plane" aria-hidden="true"></i>
+        SEND</button>
+      </div>
+    </div>
+  {{/autoForm}}
+</template>

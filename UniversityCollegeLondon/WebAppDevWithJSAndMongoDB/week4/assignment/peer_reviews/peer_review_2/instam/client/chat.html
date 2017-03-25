@@ -1,0 +1,23 @@
+<template name="chat">
+	<div class="container top-under">
+		<div class="row">
+			<div class="nowUser">
+				<h4><span class="label label-info">{{nowUser}}</span></h4>
+			</div>
+			<div class="col-md-6 col-xs-12">
+				<div class="well well-lg well-color level-up-this">
+					{{#each history}}
+						<img src="/{{getAvatar from}}" class="small-avatar">
+						<span class="label label-default">{{getUsername from}}</span>
+						 : {{message}}
+						<br/>
+					{{/each}}
+				</div>
+			</div>
+
+			<div class="col-md-6 col-xs-12">
+				{{> messageForm}}
+			</div>
+		</div>
+	</div>
+</template>
